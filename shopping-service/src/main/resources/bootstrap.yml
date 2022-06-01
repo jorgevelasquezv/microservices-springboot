@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: shopping-service
+  cloud:
+    config:
+      uri: http://localhost:8083
+      username: admin
+      password: admin
+  boot:
+    admin:
+      client:
+        url: http://localhost:8082
+#spring:
+#  application:
+#    name: custom-service
+#  config:
+#    enabled: true
+#    import: configserver:http://localhost:8083
+#    name: admin
+#    password: admin
+#  cloud:
+#    config:
+#      import: http://localhost:8083
+#      name: admin
+#      password: admin
+#  config:
+#    import:
+#      configserver: http://localhost:8083
+#      name: user
+#      password: a5c37f5f-ae64-452c-aa84-2324622bcc1b
