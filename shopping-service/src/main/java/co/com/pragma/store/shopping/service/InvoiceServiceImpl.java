@@ -28,7 +28,7 @@ public class InvoiceServiceImpl implements InvoiceService{
     @Autowired
     CustomerClient customerClient;
 
-//    @Autowired
+    @Autowired
     ProductClient productClient;
 
     @Override
@@ -81,7 +81,7 @@ public class InvoiceServiceImpl implements InvoiceService{
         if (null != invoice ){
             Customer customer = customerClient.getCustomer(invoice.getCustomerId()).getBody();
             invoice.setCustomer(customer);
-            List<InvoiceItem> listItem=invoice.getItems().stream().map(invoiceItem -> {
+            List<InvoiceItem> listItem = invoice.getItems().stream().map(invoiceItem -> {
                 Product product = productClient.getProduct(invoiceItem.getProductId()).getBody();
                 invoiceItem.setProduct(product);
                 return invoiceItem;

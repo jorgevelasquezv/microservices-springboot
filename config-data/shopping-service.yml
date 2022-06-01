@@ -40,6 +40,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8084/eureka/
+Feign:
+  hystrix:
+    enabled: true
 management:
   endpoints:
     web:
