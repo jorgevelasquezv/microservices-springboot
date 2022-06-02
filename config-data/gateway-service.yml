@@ -1,0 +1,31 @@
+#Application Configuration
+server:
+  port: 8085
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8084/eureka/
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: custom-service
+          uri: lb://custom-service
+          predicates:
+            - Path=/customers/**
+        - id: service-product
+          uri: lb://service-product
+          predicates:
+            - Path=/products/**
+        - id: shopping-service
+          uri: lb://shopping-service
+          predicates:
+            - Path=/invoices/**
+
+
+
