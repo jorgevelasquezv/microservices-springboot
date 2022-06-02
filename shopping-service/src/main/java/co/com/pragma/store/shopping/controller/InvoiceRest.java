@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -27,6 +29,7 @@ public class InvoiceRest {
     InvoiceService invoiceService;
 
     @GetMapping
+    @HystrixCommand
     public ResponseEntity<List<Invoice>> listAllInvoices(){
         List<Invoice> invoices = invoiceService.findInvoiceAll();
         if (invoices.isEmpty()){
@@ -36,6 +39,7 @@ public class InvoiceRest {
     }
 
     @GetMapping(value = "/{id}")
+    @HystrixCommand
     public ResponseEntity<Invoice> getInvoice(@PathVariable("id") Long id){
         log.info("Fetching Invoice with id {}", id);
         Invoice invoice = invoiceService.getInvoice(id);
@@ -47,6 +51,7 @@ public class InvoiceRest {
     }
 
     @PostMapping
+    @HystrixCommand
     public ResponseEntity<Invoice> createInvoice(@Valid @RequestBody Invoice invoice, BindingResult result){
         log.info("Creating Invoice: {}", invoice);
         if (result.hasErrors()){
@@ -58,6 +63,7 @@ public class InvoiceRest {
     }
 
     @PutMapping(value = "/{id}")
+    @HystrixCommand
     public ResponseEntity<?> updateInvoice(@PathVariable("id") Long id, @RequestBody Invoice invoice){
         log.info("Updating Invoice with id {}", id);
 
@@ -72,6 +78,7 @@ public class InvoiceRest {
     }
 
     @DeleteMapping(value = "/{id}")
+    @HystrixCommand
     public ResponseEntity<Invoice> deleteInvoice(@PathVariable("id") Long id){
         log.info("Fetching & Deleting Invoice with id {}", id);
 
