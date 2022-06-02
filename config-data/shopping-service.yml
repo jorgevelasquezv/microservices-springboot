@@ -50,5 +50,8 @@ management:
     web:
       exposure:
         include: "*"
+    hystrix:
+      stream:
+        enabled: true
 
 
