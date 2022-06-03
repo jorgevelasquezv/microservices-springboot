@@ -3,7 +3,7 @@ server:
   port: 8082
 
 # To See H2 Console in Browser:
-# http://localhost:8093/h2-console
+# http://localhost:8082/h2-console
 # Enabling H2 Console
 spring:
   h2:

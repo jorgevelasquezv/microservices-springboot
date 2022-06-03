@@ -4,6 +4,7 @@ import co.com.pragma.store.shopping.entity.Invoice;
 import co.com.pragma.store.shopping.service.InvoiceService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class InvoiceRest {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Invoice> getInvoice(@PathVariable("id") Long id){
+    public ResponseEntity<Invoice> getInvoice(@PathVariable Long id){
         log.info("Fetching Invoice with id {}", id);
         Invoice invoice = invoiceService.getInvoice(id);
         if (null == invoice){
